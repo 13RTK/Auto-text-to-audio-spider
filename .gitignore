@@ -1,0 +1,11 @@
+# maven #
+target/
+
+# vscode #
+.vscode/
+
+# IDEA #
+.idea/
+
+# file #
+*.txt
