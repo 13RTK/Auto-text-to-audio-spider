@@ -14,7 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("欢迎使用Alex出品的Spider工具，目前只能爬取《斗罗大陆1》，之后会陆续更新其他小说");
-        System.out.println("请输入抓取文件后保存的绝对路径（以斜线结尾）");
+        System.out.println("请输入抓取文件后保存的绝对路径，该文件路径对应的文件夹必须存在！（以斜线结尾）");
         String filePath = scanner.nextLine();
 
         Douluo1Spider.execute(filePath);
