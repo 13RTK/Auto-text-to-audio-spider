@@ -1,5 +1,7 @@
-package org.alex.text2speech.util;
+package org.alex.text2speech.service;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,7 +11,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Log
-public final class JsoupUtil {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class SpiderService {
     public static Document getDocumentFromUrl(String urlStr) throws MalformedURLException {
         Document res = null;
         URL url = new URL(urlStr);

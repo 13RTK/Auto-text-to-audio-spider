@@ -1,6 +1,6 @@
 package org.alex.text2speech;
 
-import org.alex.text2speech.util.douluo1.document2str.Douluo1Spider;
+import org.alex.text2speech.util.spider.douluo.document2str.Douluo1Spider;
 
 import java.io.IOException;
 import java.util.Scanner;

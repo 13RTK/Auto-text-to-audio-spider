@@ -1,4 +1,4 @@
-package org.alex.text2speech.util.douluo1.document2str;
+package org.alex.text2speech.util.spider.douluo.document2str;
 
 import lombok.extern.java.Log;
 import org.jsoup.nodes.Document;

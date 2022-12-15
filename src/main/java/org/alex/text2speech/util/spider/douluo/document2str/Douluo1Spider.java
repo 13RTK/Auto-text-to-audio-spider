@@ -1,6 +1,6 @@
-package org.alex.text2speech.util.douluo1.document2str;
+package org.alex.text2speech.util.spider.douluo.document2str;
 
-import org.alex.text2speech.util.JsoupUtil;
+import org.alex.text2speech.service.SpiderService;
 import org.alex.text2speech.util.PropsUtil;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
@@ -15,12 +15,12 @@ public final class Douluo1Spider {
 
         int startPageIdx = 8585;
         int startFileIdx = 1;
-        String url = PropsUtil.getProperty("douluo1.url");
+        String url = PropsUtil.getBookProperty("douluo1.url");
 
         for (int pageIdx = startPageIdx, fileIdx = startFileIdx; pageIdx <= 10003; pageIdx += 2, fileIdx++) {
             String curRequestURL = url + pageIdx + ".html";
 
-            Document document = JsoupUtil.getDocumentFromUrl(curRequestURL);
+            Document document = SpiderService.getDocumentFromUrl(curRequestURL);
             String s = DouluoConverter.document2Str(document, curRequestURL);
 
             if (s.equals("skip")) {
