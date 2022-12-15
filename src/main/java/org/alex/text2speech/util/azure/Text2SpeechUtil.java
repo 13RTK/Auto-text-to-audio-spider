@@ -20,10 +20,8 @@ import static com.microsoft.cognitiveservices.speech.SpeechSynthesisOutputFormat
 
 @Log
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-/**
- * 将字符转换为音频文件的工具
- *
- * @author Alex
+/*
+  将字符转换为音频文件的工具
  */
 public final class Text2SpeechUtil {
     private static final String KEY;
@@ -43,8 +41,8 @@ public final class Text2SpeechUtil {
     /**
      * 将指定文件夹/路径下所有的 txt 文件转换为 mp3 格式的音频文件
      *
-     * @param srcDirectoryStr 源文件夹/路径所在的路径名称
-     * @param saveDirectoryStr 输出的音频文件存在的目录
+     * @param srcDirectoryStr   源文件夹/路径所在的路径名称
+     * @param saveDirectoryStr  输出的音频文件存在的目录
      * @param customerVoiceName 用户自定义的语言音色
      */
     public static void batchConvertFile2Wav(String srcDirectoryStr, String saveDirectoryStr, String customerVoiceName) {
@@ -52,12 +50,12 @@ public final class Text2SpeechUtil {
 
         for (File file : files) {
             String curFileName = file.getName();
-            String outputAudioFileName = curFileName.split("\\.")[0] + ".mp3";
 
             if (!curFileName.contains(".txt")) {
                 continue;
             }
 
+            String outputAudioFileName = curFileName.split("\\.")[0] + ".mp3";
             log.info("正在处理文件: " + curFileName + ", 处理后的文件名" + outputAudioFileName);
             convertFile2Wav(file, saveDirectoryStr + outputAudioFileName, customerVoiceName);
         }
@@ -66,8 +64,8 @@ public final class Text2SpeechUtil {
     /**
      * 将指定 txt 文件转换为 mp3 格式的音频文件
      *
-     * @param file 源文件所在的路径名称
-     * @param outputFileName 输出的音频文件名称
+     * @param file              源文件所在的路径名称
+     * @param outputFileName    输出的音频文件名称
      * @param customerVoiceName 用户自定义的语言音色
      */
     public static void convertFile2Wav(File file, String outputFileName, String customerVoiceName) {
@@ -87,8 +85,8 @@ public final class Text2SpeechUtil {
     /**
      * 将指定 txt 文件转换为 mp3 格式的音频文件
      *
-     * @param str 需要处理的字符
-     * @param outputFileName 输出的音频文件名称
+     * @param str             需要处理的字符
+     * @param outputFileName  输出的音频文件名称
      * @param customVoiceName 用户自定义的语言音色
      */
     public static void convertStr2Wav(String str, String outputFileName, String customVoiceName) {
@@ -104,10 +102,10 @@ public final class Text2SpeechUtil {
     /**
      * 将指定 txt 文件转换为 mp3 格式的音频文件
      *
-     * @param str 需要处理的字符
-     * @param outputFileName 输出的音频文件名称
+     * @param str             需要处理的字符
+     * @param outputFileName  输出的音频文件名称
      * @param customVoiceName 用户自定义的语言音色
-     * @param customFormat 用户自定义的音频文件格式与码率
+     * @param customFormat    用户自定义的音频文件格式与码率
      */
     public static void convertStr2Wav(String str, String outputFileName, String customVoiceName, SpeechSynthesisOutputFormat customFormat) {
         voiceName = customVoiceName;

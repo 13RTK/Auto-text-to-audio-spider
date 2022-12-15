@@ -27,7 +27,7 @@ public class Text2SpeechUtilTest {
         String directoryPath = "/Users/alex/Desktop/demo1/";
         File file = new File("/Users/alex/Desktop/demo1/1.txt");
 
-        Text2SpeechUtil.convertFile2Wav(file, directoryPath + "1.mp3", customerVoiceNameArr[1]);
+        Text2SpeechUtil.convertFile2Wav(file, directoryPath + "1.mp3", customerVoiceNameArr[0]);
     }
 
     @Test
