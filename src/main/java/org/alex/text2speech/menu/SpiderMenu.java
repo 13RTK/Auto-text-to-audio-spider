@@ -26,7 +26,7 @@ public final class SpiderMenu {
         int inputNum = InputValidator.getValidateNumberFromInput(0, 1, options);
         switch (inputNum) {
             case 1:
-                System.out.println("请输入文本文件保存的绝对路径: " + DIRECTORY_REMIND);
+                System.out.println("请输入小说文本文件保存位置对应文件夹的绝对路径: " + DIRECTORY_REMIND);
                 textFileSavePath = scanner.nextLine();
 
                 System.out.println(SPIDER_PROCESS_STR);

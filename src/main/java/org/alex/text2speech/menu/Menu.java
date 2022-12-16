@@ -20,7 +20,7 @@ public final class Menu {
     public static final boolean IS_MAC = OS_NAME.toLowerCase().contains("mac");
     public static final String EXIT_STR = "0 : 退出\n";
     public static final String BACK_MAIN_MENU_STR = "7 : 回到主菜单\n";
-    public static final String MENU_COMPONENT_DELIMITER = "==========================================";
+    public static final String MENU_COMPONENT_DELIMITER = "\n==========================================\n";
 
     public static void mainMenu() {
         String options = "1 : 爬取小说\n" +
