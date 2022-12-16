@@ -31,7 +31,7 @@ public final class Text2SpeechUtil {
     private static final SpeechConfig SPEECH_CONFIG;
 
     static {
-        KEY = System.getenv("SPEECH_KEY");
+        KEY = PropsUtil.getAzureProperty("speech.key");
         SPEECH_REGION = PropsUtil.getAzureProperty("speech.region");
         voiceName = PropsUtil.getAzureProperty("voiceName.default");
 

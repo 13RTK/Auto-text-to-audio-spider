@@ -10,9 +10,12 @@ import java.util.Scanner;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class InputValidator {
     public static final Scanner scanner = new Scanner(System.in);
-//    private static final String OS_NAME = System.getProperty("os.name");
 
     private static int operateSkipValidate(String inputStr, int leftBoundary, int rightBoundary) {
+        if (inputStr.length() == 0) {
+            return -1;
+        }
+
         if (isNumber(inputStr)) {
             return -1;
         }
