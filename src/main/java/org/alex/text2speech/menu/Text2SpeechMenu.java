@@ -37,7 +37,7 @@ public final class Text2SpeechMenu {
         System.out.println(ASK_STR + options);
         System.out.println(MENU_COMPONENT_DELIMITER);
 
-        int inputNum = InputValidator.getValidateNumberFromInput(1, 3, options);
+        int inputNum = InputValidator.getValidateNumberFromInput(0, 3, options);
         executeByInputOption(inputNum);
 
         operateAskAfterConvert(options);
