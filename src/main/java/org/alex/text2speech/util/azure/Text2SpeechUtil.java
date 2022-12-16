@@ -7,6 +7,7 @@ import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
+import org.alex.text2speech.menu.Menu;
 import org.alex.text2speech.util.PropsUtil;
 import org.apache.commons.io.FileUtils;
 
@@ -29,6 +30,7 @@ public final class Text2SpeechUtil {
     public static String voiceName;
     public static SpeechSynthesisOutputFormat format = Audio16Khz128KBitRateMonoMp3;
     private static final SpeechConfig SPEECH_CONFIG;
+    private static final String DELIMITER = Menu.IS_MAC ? "/" : "\\";
 
     static {
         KEY = PropsUtil.getAzureProperty("speech.key");
@@ -57,7 +59,7 @@ public final class Text2SpeechUtil {
 
             String outputAudioFileName = curFileName.split("\\.")[0] + ".mp3";
             log.info("正在处理文件: " + curFileName + ", 处理后的文件名" + outputAudioFileName);
-            convertFile2Wav(file.getAbsolutePath() + file.getName(), saveDirectoryStr + outputAudioFileName, customerVoiceName);
+            convertFile2Wav(file.getParent() + DELIMITER + file.getName(), saveDirectoryStr + outputAudioFileName, customerVoiceName);
         }
     }
 
@@ -71,6 +73,7 @@ public final class Text2SpeechUtil {
     public static void convertFile2Wav(String filePath, String outputFileName, String customerVoiceName) {
         StringBuilder builder = new StringBuilder();
         File curFile = new File(filePath);
+        System.out.println(curFile.getAbsolutePath());
 
         try {
             List<String> strings = FileUtils.readLines(curFile, StandardCharsets.UTF_8);
