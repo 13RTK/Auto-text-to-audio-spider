@@ -1,12 +1,10 @@
 # 1.概述
 - 该项目意在实现一个从网络爬取小说内容，并将文本文件转换为音频文件的工具
-- 该项目的音频转换功能依赖于Azure的语言服务，请自备一个Azure的开发密钥（该功能开发中）
+- 该项目的音频转换功能依赖于Azure的语言服务，如果需要自行编译构建，请自备一个Azure的开发密钥，并替换掉resources目录下的"azure.properties"文件中speech.key的值<Your-Azure-Resource-Key>
 
 # 2. 运行
-- 该项目运行需要Java环境，请在releases中下载jar文件后，通过java -jar命令运行:
-```java
-java -jar <.jar文件所在的路径>
-```
+- windows用户请在releases中的云盘链接内下载对应的文件，链接中有两个文件，全部下载后点击运行其中的exe文件即可，另一个文件请不要删除，否则无法运行（依赖的JDK）
+- mac用户请自备jdk后，下载jar包运行（mac打包在学了>_<）
 
 # 3. 文档
 - [Azure文本转语音入门文档](https://learn.microsoft.com/zh-cn/azure/cognitive-services/speech-service/get-started-text-to-speech?tabs=windows%2Cterminal&pivots=programming-language-java)
