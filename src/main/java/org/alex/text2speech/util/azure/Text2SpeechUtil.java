@@ -26,16 +26,16 @@ import static com.microsoft.cognitiveservices.speech.SpeechSynthesisOutputFormat
 public final class Text2SpeechUtil {
     private static final String KEY;
     private static final String SPEECH_REGION;
-    private static String voiceName;
-    private static SpeechSynthesisOutputFormat format = Audio16Khz128KBitRateMonoMp3;
-    private static final SpeechConfig speechConfig;
+    public static String voiceName;
+    public static SpeechSynthesisOutputFormat format = Audio16Khz128KBitRateMonoMp3;
+    private static final SpeechConfig SPEECH_CONFIG;
 
     static {
         KEY = System.getenv("SPEECH_KEY");
         SPEECH_REGION = PropsUtil.getAzureProperty("speech.region");
         voiceName = PropsUtil.getAzureProperty("voiceName.default");
 
-        speechConfig = SpeechConfig.fromSubscription(KEY, SPEECH_REGION);
+        SPEECH_CONFIG = SpeechConfig.fromSubscription(KEY, SPEECH_REGION);
     }
 
     /**
@@ -57,26 +57,29 @@ public final class Text2SpeechUtil {
 
             String outputAudioFileName = curFileName.split("\\.")[0] + ".mp3";
             log.info("正在处理文件: " + curFileName + ", 处理后的文件名" + outputAudioFileName);
-            convertFile2Wav(file, saveDirectoryStr + outputAudioFileName, customerVoiceName);
+            convertFile2Wav(file.getAbsolutePath() + file.getName(), saveDirectoryStr + outputAudioFileName, customerVoiceName);
         }
     }
 
     /**
      * 将指定 txt 文件转换为 mp3 格式的音频文件
      *
-     * @param file              源文件所在的路径名称
+     * @param filePath          源文件所在的路径
      * @param outputFileName    输出的音频文件名称
      * @param customerVoiceName 用户自定义的语言音色
      */
-    public static void convertFile2Wav(File file, String outputFileName, String customerVoiceName) {
+    public static void convertFile2Wav(String filePath, String outputFileName, String customerVoiceName) {
         StringBuilder builder = new StringBuilder();
+        File curFile = new File(filePath);
+
         try {
-            List<String> strings = FileUtils.readLines(file, StandardCharsets.UTF_8);
+            List<String> strings = FileUtils.readLines(curFile, StandardCharsets.UTF_8);
             for (String curStr : strings) {
                 builder.append(curStr).append("\n");
             }
         } catch (IOException e) {
             log.warning("文本文件读取失败");
+            return;
         }
 
         convertStr2Wav(builder.toString(), outputFileName, customerVoiceName);
@@ -92,10 +95,10 @@ public final class Text2SpeechUtil {
     public static void convertStr2Wav(String str, String outputFileName, String customVoiceName) {
         voiceName = customVoiceName;
 
-        speechConfig.setSpeechSynthesisVoiceName(voiceName);
+        SPEECH_CONFIG.setSpeechSynthesisVoiceName(voiceName);
         AudioConfig audioConfig = AudioConfig.fromWavFileOutput(outputFileName);
 
-        SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+        SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(SPEECH_CONFIG, audioConfig);
         speechSynthesizer.SpeakText(str);
     }
 
@@ -111,11 +114,11 @@ public final class Text2SpeechUtil {
         voiceName = customVoiceName;
         format = customFormat;
 
-        speechConfig.setSpeechSynthesisVoiceName(voiceName);
-        speechConfig.setSpeechSynthesisOutputFormat(format);
+        SPEECH_CONFIG.setSpeechSynthesisVoiceName(voiceName);
+        SPEECH_CONFIG.setSpeechSynthesisOutputFormat(format);
         AudioConfig audioConfig = AudioConfig.fromWavFileOutput(outputFileName);
 
-        SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+        SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(SPEECH_CONFIG, audioConfig);
         speechSynthesizer.SpeakText(str);
     }
 

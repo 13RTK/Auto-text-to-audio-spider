@@ -13,17 +13,22 @@ import java.util.Properties;
 public final class PropsUtil {
     private static final Properties bookProperties;
     private static final Properties azureProperties;
+    private static final Properties contactProperties;
 
     static {
-        InputStream bookResourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("book.properties");
-        InputStream azureResourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("azure.properties");
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        InputStream bookResourceAsStream = contextClassLoader.getResourceAsStream("book.properties");
+        InputStream azureResourceStream = contextClassLoader.getResourceAsStream("azure.properties");
+        InputStream contactResourceStream = contextClassLoader.getResourceAsStream("contact.properties");
 
         bookProperties = new Properties();
         azureProperties = new Properties();
+        contactProperties = new Properties();
 
         try {
             bookProperties.load(bookResourceAsStream);
             azureProperties.load(azureResourceStream);
+            contactProperties.load(contactResourceStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,5 +40,9 @@ public final class PropsUtil {
 
     public static String getAzureProperty(String propertyName) {
         return azureProperties.getProperty(propertyName);
+    }
+
+    public static String getContactProperty(String propertyName) {
+        return contactProperties.getProperty(propertyName);
     }
 }
