@@ -79,9 +79,12 @@ public final class Text2SpeechMenu {
             case 7:
                 mainMenu();
                 break;
-
+            case 0:
+                exit();
+                break;
             default:
                 log.warning(ERROR_STR);
+                exit();
         }
         System.out.println(MENU_COMPONENT_DELIMITER);
     }

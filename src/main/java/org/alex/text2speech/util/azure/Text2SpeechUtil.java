@@ -73,7 +73,6 @@ public final class Text2SpeechUtil {
     public static void convertFile2Wav(String filePath, String outputFileName, String customerVoiceName) {
         StringBuilder builder = new StringBuilder();
         File curFile = new File(filePath);
-        System.out.println(curFile.getAbsolutePath());
 
         try {
             List<String> strings = FileUtils.readLines(curFile, StandardCharsets.UTF_8);
